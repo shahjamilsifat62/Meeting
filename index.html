@@ -324,8 +324,7 @@
     <!-- Firebase core logic initialization using modular import -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, doc, getDoc, setDoc, updateDoc, onSnapshot, arrayUnion, arrayRemove } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        import { getFirestore, doc, getDoc, setDoc, updateDoc, onSnapshot, arrayUnion } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
         // Global environment bindings provided by interface/container
         const appId = typeof __app_id !== 'undefined' ? __app_id : 'meeting-planner-v1';
@@ -341,9 +340,8 @@
         // Initialize Firebase SDK
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
-        const auth = getAuth(app);
 
-        // State control variable
+        // State control variables
         let currentUserId = null;
         let currentUserName = '';
         let currentRoomId = '';
@@ -407,28 +405,23 @@
             return '';
         }
 
-        // Authenticate the user dynamically
-        async function authenticateUser() {
-            try {
-                let userCredential;
-                if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
-                    userCredential = await signInWithCustomToken(auth, __initial_auth_token);
-                } else {
-                    userCredential = await signInAnonymously(auth);
-                }
-                currentUserId = userCredential.user.uid;
-                
-                // Route user based on url context
-                const roomId = getRoomIdFromHash();
-                if (roomId) {
-                    currentRoomId = roomId;
-                    document.getElementById('setup-title').innerText = "মিটিং রুমে যোগ দিন";
-                    document.getElementById('create-room-group').classList.add('hidden');
-                    document.getElementById('join-room-group').classList.remove('hidden');
-                }
-            } catch (error) {
-                console.error("Authentication Error:", error);
-                showToast("অথেনটিকেশন ফেইল হয়েছে। দয়া করে পেজটি রিফ্রেশ করুন।", 'error');
+        // Initialize user session robustly via localStorage (Completely bypassing Firebase Auth limitations)
+        function initializeUserSession() {
+            let localUid = localStorage.getItem('meeting_planner_uid');
+            if (!localUid) {
+                // Generate a robust unique random user ID
+                localUid = 'usr_' + Math.random().toString(36).substring(2, 11) + Date.now().toString(36);
+                localStorage.setItem('meeting_planner_uid', localUid);
+            }
+            currentUserId = localUid;
+            
+            // Route user based on url context
+            const roomId = getRoomIdFromHash();
+            if (roomId) {
+                currentRoomId = roomId;
+                document.getElementById('setup-title').innerText = "মিটিং রুমে যোগ দিন";
+                document.getElementById('create-room-group').classList.add('hidden');
+                document.getElementById('join-room-group').classList.remove('hidden');
             }
         }
 
@@ -461,15 +454,9 @@
                 participants: [
                     { userId: currentUserId, name: usernameInput, joinedAt: Date.now() }
                 ],
-                dates: [
-                    // { id: 'd1', value: '2026-07-10', votes: [userIds] }
-                ],
-                times: [
-                    // { id: 't1', value: '18:00', votes: [userIds] }
-                ],
-                places: [
-                    // { id: 'p1', value: 'Zoom Meeting Room', votes: [userIds] }
-                ],
+                dates: [],
+                times: [],
+                places: [],
                 messages: [
                     { senderId: 'system', senderName: 'সিস্টেম', text: `${usernameInput} নতুন মিটিং প্যানেল তৈরি করেছেন। আড্ডায় স্বাগতম!`, timestamp: Date.now() }
                 ],
@@ -483,7 +470,7 @@
                 showToast("মিটিং রুম সফলভাবে তৈরি হয়েছে! লিংকটি শেয়ার করুন।");
             } catch(e) {
                 console.error(e);
-                showToast("রুম তৈরি করতে সমস্যা হয়েছে। আবার ট্রাই করুন।", 'error');
+                showToast("রুম তৈরি করতে সমস্যা হয়েছে। আপনার ফায়ারবেস কনফিগারেশন চেক করুন।", 'error');
             }
         }
 
@@ -501,7 +488,6 @@
             try {
                 const roomSnap = await getDoc(roomRef);
                 if (roomSnap.exists()) {
-                    // Add this user as a participant inside the Firestore document
                     const roomData = roomSnap.data();
                     const alreadyJoined = roomData.participants.find(p => p.userId === currentUserId);
                     
@@ -558,7 +544,7 @@
                 }
             }, (error) => {
                 console.error("Sync Error: ", error);
-                showToast("ডাটা সিঙ্ক হতে ত্রুটি হচ্ছে। ইন্টারনেটের কানেকশন চেক করুন।", 'error');
+                showToast("ডাটা সিঙ্ক হতে ত্রুটি হচ্ছে। ডাটাবেজে সঠিক পারমিশন আছে কিনা চেক করুন।", 'error');
             });
         }
 
@@ -1012,8 +998,8 @@
         }
 
         // Setup initial user state & event hook bindings
-        window.onload = async () => {
-            await authenticateUser();
+        window.onload = () => {
+            initializeUserSession();
 
             // Setup Screen Buttons
             document.getElementById('create-room-btn').addEventListener('click', handleCreateRoom);
