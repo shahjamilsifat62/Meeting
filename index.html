@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>সহজ মিটিং প্ল্যানার (Easy Meeting Planner)</title>
+    <title>(Easy Meeting Planner)</title>
     <!-- Tailwind CSS for rich, modern design -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts: Inter and Hind Siliguri for Bengali typography -->
@@ -38,7 +38,7 @@
     <!-- Custom Toast Notification Box -->
     <div id="toast" class="fixed top-5 right-5 z-50 transform translate-y-[-150%] transition-transform duration-300 bg-slate-900 text-white px-5 py-3 rounded-xl shadow-2xl flex items-center space-x-3 text-sm font-medium">
         <span id="toast-icon" class="text-emerald-400 text-lg"><i class="fas fa-check-circle"></i></span>
-        <span id="toast-message">টিনটিন! নোটিফিকেশন লোড হচ্ছে...</span>
+        <span id="toast-message">Notification is loading...</span>
     </div>
 
     <!-- Main App Container -->
@@ -52,20 +52,20 @@
                         <i class="fa-solid fa-handshake-simple text-2xl"></i>
                     </div>
                     <div>
-                        <h1 class="text-xl sm:text-2xl font-bold tracking-tight bg-gradient-to-r from-indigo-600 to-violet-600 bg-clip-text text-transparent">মিটিং প্ল্যানার</h1>
-                        <p class="text-xs text-slate-500 font-medium">সবাই মিলে সহজে মিটিং ঠিক করার রিয়েল-টাইম পোর্টাল</p>
+                        <h1 class="text-xl sm:text-2xl font-bold tracking-tight bg-gradient-to-r from-indigo-600 to-violet-600 bg-clip-text text-transparent">Lets Meet Baby</h1>
+                        <p class="text-xs text-slate-500 font-medium">Real Time Collaboration</p>
                     </div>
                 </div>
                 <!-- Status & Action Buttons on Header -->
                 <div id="header-actions" class="hidden flex flex-wrap items-center gap-2">
                     <span id="room-status-badge" class="px-3 py-1 text-xs font-semibold rounded-full bg-amber-100 text-amber-800 flex items-center gap-1.5">
-                        <span class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span> ভোটিং চলছে
+                        <span class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span> Voting Ongoing
                     </span>
                     <button id="copy-link-btn" class="px-3.5 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold rounded-lg transition-all flex items-center gap-2 border border-slate-200">
-                        <i class="fa-regular fa-copy"></i> লিংক কপি করুন
+                        <i class="fa-regular fa-copy"></i> Copy Link
                     </button>
                     <button id="finalize-btn" class="px-4 py-1.5 bg-gradient-to-r from-emerald-600 to-teal-500 hover:from-emerald-700 hover:to-teal-600 text-white text-xs font-semibold rounded-lg shadow-md transition-all flex items-center gap-1.5">
-                        <i class="fa-solid fa-circle-check"></i> মিটিং ফাইনাল করুন
+                        <i class="fa-solid fa-circle-check"></i> Finalize Meeting
                     </button>
                 </div>
             </div>
@@ -74,37 +74,37 @@
         <!-- SETUP SCREEN: Create or Join Room -->
         <section id="setup-screen" class="max-w-md mx-auto my-12 p-8 bg-white rounded-3xl shadow-xl border border-slate-100 w-11/12">
             <div class="text-center mb-8">
-                <span class="px-3 py-1 bg-indigo-50 text-indigo-600 text-xs font-bold rounded-full uppercase tracking-wider">রিয়েল-টাইম কোলাবোরেশন</span>
-                <h2 class="text-2xl font-extrabold text-slate-900 mt-3" id="setup-title">নতুন মিটিং শুরু করুন</h2>
-                <p class="text-sm text-slate-500 mt-1">তারিখ, সময় এবং স্থান সিলেক্ট করে ভোট দিন</p>
+                <span class="px-3 py-1 bg-indigo-50 text-indigo-600 text-xs font-bold rounded-full uppercase tracking-wider">Real Time Collaboration</span>
+                <h2 class="text-2xl font-extrabold text-slate-900 mt-3" id="setup-title">Create New Meeting Room</h2>
+                <p class="text-sm text-slate-500 mt-1">Select date, time, and location to vote</p>
             </div>
 
             <!-- Set Username -->
             <div class="space-y-4">
                 <div>
-                    <label class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5" for="username">আপনার নাম (Your Name)</label>
+                    <label class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5" for="username">Your Name</label>
                     <div class="relative">
                         <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 text-slate-400">
                             <i class="fa-solid fa-user"></i>
                         </span>
-                        <input type="text" id="username" placeholder="উদাঃ আবির হোসেন" class="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:bg-white transition-all text-sm outline-none">
+                        <input type="text" id="username" placeholder="e.g., Victor " class="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:bg-white transition-all text-sm outline-none">
                     </div>
                 </div>
 
                 <!-- Create Room Options (Shown if not joining via URL) -->
                 <div id="create-room-group" class="space-y-4">
                     <div>
-                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5" for="room-name">মিটিংয়ের বিষয়/নাম (Meeting Topic)</label>
+                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5" for="room-name">Meeting Topic</label>
                         <div class="relative">
                             <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 text-slate-400">
                                 <i class="fa-solid fa-comments"></i>
                             </span>
-                            <input type="text" id="room-name" placeholder="উদাঃ প্রজেক্ট ডিসকাশন বা বন্ধুদের আড্ডা" class="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:bg-white transition-all text-sm outline-none">
+                            <input type="text" id="room-name" placeholder="e.g., Date or Friends Gathering" class="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:bg-white transition-all text-sm outline-none">
                         </div>
                     </div>
                     
                     <button id="create-room-btn" class="w-full py-3.5 bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-700 hover:to-violet-700 text-white font-bold rounded-xl shadow-lg shadow-indigo-200 transition-all flex items-center justify-center gap-2 text-sm mt-4">
-                        <i class="fa-solid fa-plus-circle"></i> নতুন মিটিং রুম তৈরি করুন
+                        <i class="fa-solid fa-plus-circle"></i> Create New Meeting Room
                     </button>
                 </div>
 
@@ -113,17 +113,17 @@
                     <div class="p-4 bg-amber-50 rounded-xl border border-amber-100 text-amber-900 text-xs flex gap-3 items-start">
                         <i class="fa-solid fa-circle-info text-amber-500 mt-0.5 text-sm"></i>
                         <div>
-                            <span class="font-bold">আমন্ত্রণ পেয়েছেন!</span> আপনি একটি চলমান মিটিং রুমে যোগ দিতে যাচ্ছেন। দয়া করে আপনার নাম লিখে নিচের বাটনে ক্লিক করুন।
+                            <span class="font-bold">You've been invited!</span> You are about to join an active meeting room. Please enter your name and click the button below.
                         </div>
                     </div>
                     <button id="join-room-btn" class="w-full py-3.5 bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-700 hover:to-violet-700 text-white font-bold rounded-xl shadow-lg shadow-indigo-200 transition-all flex items-center justify-center gap-2 text-sm">
-                        <i class="fa-solid fa-right-to-bracket"></i> রুমে যোগ দিন
+                        <i class="fa-solid fa-right-to-bracket"></i> Join Room
                     </button>
                 </div>
             </div>
 
             <div class="mt-8 pt-6 border-t border-slate-100 text-center">
-                <span class="text-xs text-slate-400">রুমের লিংকটি কপি করে বন্ধুদের শেয়ার করলেই তারা রুমে যোগ দিতে পারবে</span>
+                <span class="text-xs text-slate-400">Copy the room link and share it with friends to invite them to the room</span>
             </div>
         </section>
 
@@ -139,17 +139,17 @@
                         <i class="fa-solid fa-calendar-check"></i>
                     </div>
                     <div class="relative z-10">
-                        <span class="px-3 py-1 bg-white/20 text-white text-xs font-extrabold rounded-full uppercase tracking-widest"><i class="fa-solid fa-circle-check mr-1"></i> মিটিং চূড়ান্ত করা হয়েছে!</span>
-                        <h2 class="text-2xl sm:text-3xl font-extrabold mt-3">মিটিং এর চূড়ান্ত সিদ্ধান্ত 🎉</h2>
-                        <p class="text-sm text-emerald-100 mt-1">সবাই মিলে ভোটিং এর মাধ্যমে নিচের সময় এবং স্থান চূড়ান্ত করেছে।</p>
-                        
+                        <span class="px-3 py-1 bg-white/20 text-white text-xs font-extrabold rounded-full uppercase tracking-widest"><i class="fa-solid fa-circle-check mr-1"></i> Meeting Finalized!</span>
+                        <h2 class="text-2xl sm:text-3xl font-extrabold mt-3">Final Decision for the Meeting 🎉</h2>
+                        <p class="text-sm text-emerald-100 mt-1">Everyone has agreed on the date and location through voting.</p>
+
                         <!-- Final Specs Grid -->
                         <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6">
                             <!-- Date Card -->
                             <div class="bg-white/10 backdrop-blur-md p-4 rounded-2xl border border-white/10 flex items-center space-x-3.5">
                                 <div class="bg-white/20 text-white p-2.5 rounded-xl"><i class="fa-solid fa-calendar-day text-lg"></i></div>
                                 <div>
-                                    <span class="text-[10px] text-emerald-200 block font-bold uppercase tracking-wider">তারিখ</span>
+                                    <span class="text-[10px] text-emerald-200 block font-bold uppercase tracking-wider">Date</span>
                                     <span class="font-bold text-sm sm:text-base" id="final-date">-</span>
                                 </div>
                             </div>
@@ -157,7 +157,7 @@
                             <div class="bg-white/10 backdrop-blur-md p-4 rounded-2xl border border-white/10 flex items-center space-x-3.5">
                                 <div class="bg-white/20 text-white p-2.5 rounded-xl"><i class="fa-solid fa-clock text-lg"></i></div>
                                 <div>
-                                    <span class="text-[10px] text-emerald-200 block font-bold uppercase tracking-wider">সময়</span>
+                                    <span class="text-[10px] text-emerald-200 block font-bold uppercase tracking-wider">Time</span>
                                     <span class="font-bold text-sm sm:text-base" id="final-time">-</span>
                                 </div>
                             </div>
@@ -165,7 +165,7 @@
                             <div class="bg-white/10 backdrop-blur-md p-4 rounded-2xl border border-white/10 flex items-center space-x-3.5">
                                 <div class="bg-white/20 text-white p-2.5 rounded-xl"><i class="fa-solid fa-location-dot text-lg"></i></div>
                                 <div>
-                                    <span class="text-[10px] text-emerald-200 block font-bold uppercase tracking-wider">স্থান</span>
+                                    <span class="text-[10px] text-emerald-200 block font-bold uppercase tracking-wider">Location</span>
                                     <span class="font-bold text-sm sm:text-base" id="final-place">-</span>
                                 </div>
                             </div>
@@ -176,13 +176,13 @@
                 <!-- Info Header card (Active Room Name) -->
                 <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                     <div>
-                        <span class="text-[11px] font-bold text-indigo-600 uppercase tracking-widest block mb-0.5">অ্যাক্টিভ মিটিং প্যানেল</span>
-                        <h2 id="display-room-name" class="text-lg sm:text-xl font-bold text-slate-900">মিটিংরুম লোড হচ্ছে...</h2>
+                        <span class="text-[11px] font-bold text-indigo-600 uppercase tracking-widest block mb-0.5">Active Meeting Panel</span>
+                        <h2 id="display-room-name" class="text-lg sm:text-xl font-bold text-slate-900">Loading meeting room...</h2>
                     </div>
                     <!-- User tag -->
                     <div class="flex items-center space-x-2.5 bg-slate-50 px-3.5 py-1.5 rounded-xl border border-slate-200/80">
                         <div class="w-2.5 h-2.5 rounded-full bg-indigo-500"></div>
-                        <span class="text-xs font-semibold text-slate-600">আপনি: <span id="display-my-name" class="text-slate-900">...</span></span>
+                        <span class="text-xs font-semibold text-slate-600">You: <span id="display-my-name" class="text-slate-900">...</span></span>
                     </div>
                 </div>
 
@@ -195,7 +195,7 @@
                             <div class="flex justify-between items-center pb-4 mb-4 border-b border-slate-100">
                                 <div class="flex items-center space-x-2">
                                     <span class="text-indigo-600 bg-indigo-50 p-1.5 rounded-lg text-sm"><i class="fa-regular fa-calendar-days"></i></span>
-                                    <h3 class="font-bold text-slate-800 text-sm">সম্ভাব্য তারিখসমূহ</h3>
+                                    <h3 class="font-bold text-slate-800 text-sm">Possible Dates</h3>
                                 </div>
                                 <span class="text-[10px] px-2 py-0.5 bg-slate-100 text-slate-500 rounded font-semibold">DATE</span>
                             </div>
@@ -203,13 +203,13 @@
                             <!-- List of Dates -->
                             <div id="dates-list" class="space-y-2 max-h-[250px] overflow-y-auto pr-1">
                                 <!-- Dates item placeholder -->
-                                <p class="text-xs text-slate-400 text-center py-6">কোনো তারিখ এখনো যোগ করা হয়নি। প্রথম সাজেশন দিন!</p>
+                                <p class="text-xs text-slate-400 text-center py-6">No dates added yet. Add your first suggestion!</p>
                             </div>
                         </div>
 
                         <!-- Add Date Option -->
                         <div class="mt-4 pt-4 border-t border-slate-100 voting-input-field">
-                            <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">তারিখ সাজেস্ট করুন</label>
+                            <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Suggest a Date</label>
                             <div class="flex gap-1.5">
                                 <input type="date" id="input-new-date" class="w-full text-xs px-2.5 py-2 border border-slate-200 rounded-lg focus:ring-1 focus:ring-indigo-500 outline-none">
                                 <button id="add-date-btn" class="bg-indigo-600 hover:bg-indigo-700 text-white px-3 py-2 rounded-lg text-xs font-bold transition-all shrink-0">যোগ</button>
@@ -223,20 +223,20 @@
                             <div class="flex justify-between items-center pb-4 mb-4 border-b border-slate-100">
                                 <div class="flex items-center space-x-2">
                                     <span class="text-indigo-600 bg-indigo-50 p-1.5 rounded-lg text-sm"><i class="fa-regular fa-clock"></i></span>
-                                    <h3 class="font-bold text-slate-800 text-sm">সম্ভাব্য সময়সমূহ</h3>
+                                    <h3 class="font-bold text-slate-800 text-sm">Possible Times</h3>
                                 </div>
                                 <span class="text-[10px] px-2 py-0.5 bg-slate-100 text-slate-500 rounded font-semibold">TIME</span>
                             </div>
 
                             <!-- List of Times -->
                             <div id="times-list" class="space-y-2 max-h-[250px] overflow-y-auto pr-1">
-                                <p class="text-xs text-slate-400 text-center py-6">কোনো সময় এখনো যোগ করা হয়নি।</p>
+                                <p class="text-xs text-slate-400 text-center py-6">No times added yet.</p>
                             </div>
                         </div>
 
                         <!-- Add Time Option -->
                         <div class="mt-4 pt-4 border-t border-slate-100 voting-input-field">
-                            <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">সময় সাজেস্ট করুন</label>
+                            <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Suggest a Time</label>
                             <div class="flex gap-1.5">
                                 <input type="time" id="input-new-time" class="w-full text-xs px-2.5 py-2 border border-slate-200 rounded-lg focus:ring-1 focus:ring-indigo-500 outline-none">
                                 <button id="add-time-btn" class="bg-indigo-600 hover:bg-indigo-700 text-white px-3 py-2 rounded-lg text-xs font-bold transition-all shrink-0">যোগ</button>
@@ -250,23 +250,23 @@
                             <div class="flex justify-between items-center pb-4 mb-4 border-b border-slate-100">
                                 <div class="flex items-center space-x-2">
                                     <span class="text-indigo-600 bg-indigo-50 p-1.5 rounded-lg text-sm"><i class="fa-regular fa-compass"></i></span>
-                                    <h3 class="font-bold text-slate-800 text-sm">সম্ভাব্য স্থানসমূহ</h3>
+                                    <h3 class="font-bold text-slate-800 text-sm">Possible Places</h3>
                                 </div>
                                 <span class="text-[10px] px-2 py-0.5 bg-slate-100 text-slate-500 rounded font-semibold">PLACE</span>
                             </div>
 
                             <!-- List of Places -->
                             <div id="places-list" class="space-y-2 max-h-[250px] overflow-y-auto pr-1">
-                                <p class="text-xs text-slate-400 text-center py-6">কোনো স্থান এখনো যোগ করা হয়নি।</p>
+                                <p class="text-xs text-slate-400 text-center py-6">No places added yet.</p>
                             </div>
                         </div>
 
                         <!-- Add Place Option -->
                         <div class="mt-4 pt-4 border-t border-slate-100 voting-input-field">
-                            <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">স্থান সাজেস্ট করুন</label>
+                            <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Suggest a Place</label>
                             <div class="flex gap-1.5">
-                                <input type="text" id="input-new-place" placeholder="উদাঃ ধানমন্ডি লেক বা জুম অ্যাপ" class="w-full text-xs px-2.5 py-2 border border-slate-200 rounded-lg focus:ring-1 focus:ring-indigo-500 outline-none">
-                                <button id="add-place-btn" class="bg-indigo-600 hover:bg-indigo-700 text-white px-3 py-2 rounded-lg text-xs font-bold transition-all shrink-0">যোগ</button>
+                                <input type="text" id="input-new-place" placeholder="e.g., Lipovka or Pochinki" class="w-full text-xs px-2.5 py-2 border border-slate-200 rounded-lg focus:ring-1 focus:ring-indigo-500 outline-none">
+                                <button id="add-place-btn" class="bg-indigo-600 hover:bg-indigo-700 text-white px-3 py-2 rounded-lg text-xs font-bold transition-all shrink-0">Add</button>
                             </div>
                         </div>
                     </div>
@@ -276,12 +276,12 @@
                 <!-- List of Members & Participants on the room -->
                 <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm">
                     <div class="flex items-center justify-between mb-3">
-                        <h4 class="text-xs font-bold text-slate-700 uppercase tracking-wide">সক্রিয় সদস্যবৃন্দ (<span id="members-count">0</span>)</h4>
+                        <h4 class="text-xs font-bold text-slate-700 uppercase tracking-wide">Active Members (<span id="members-count">0</span>)</h4>
                         <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
                     </div>
                     <div id="members-list" class="flex flex-wrap gap-2">
                         <!-- Members bubbles will dynamically load here -->
-                        <span class="text-xs text-slate-400">মেম্বারদের তালিকা তৈরি হচ্ছে...</span>
+                        <span class="text-xs text-slate-400">Create Member Bubbles</span>
                     </div>
                 </div>
 
@@ -293,20 +293,20 @@
                 <div class="px-5 py-4 border-b border-slate-100 bg-slate-50 flex items-center space-x-2">
                     <div class="bg-indigo-100 text-indigo-600 p-1.5 rounded-lg text-xs"><i class="fa-solid fa-comments"></i></div>
                     <div>
-                        <h3 class="font-bold text-slate-800 text-sm">লাইভ ডিসকাশন</h3>
-                        <p class="text-[10px] text-slate-500">মিটিং নিয়ে নিজেদের মধ্যে আলোচনা করুন</p>
+                        <h3 class="font-bold text-slate-800 text-sm">Live Discussion</h3>
+                        <p class="text-[10px] text-slate-500">Discuss the meeting among yourselves</p>
                     </div>
                 </div>
 
                 <!-- Messages Panel -->
                 <div id="chat-messages" class="flex-grow overflow-y-auto p-4 space-y-3 flex flex-col">
-                    <p class="text-xs text-slate-400 text-center my-auto">রুম চ্যাটে কোনো মেসেজ নেই। এখনই আড্ডা শুরু করুন!</p>
+                    <p class="text-xs text-slate-400 text-center my-auto">No messages in the room yet. Start the conversation!</p>
                 </div>
 
                 <!-- Message Input -->
                 <div class="p-3.5 border-t border-slate-100">
                     <form id="chat-form" class="flex gap-1.5">
-                        <input type="text" id="chat-input" placeholder="মেসেজ লিখুন..." class="w-full text-xs px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:bg-white outline-none transition-all" autocomplete="off">
+                        <input type="text" id="chat-input" placeholder="Write a message..." class="w-full text-xs px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:bg-white outline-none transition-all" autocomplete="off">
                         <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white p-2.5 px-3.5 rounded-xl text-xs font-bold transition-all"><i class="fa-solid fa-paper-plane"></i></button>
                     </form>
                 </div>
@@ -318,7 +318,7 @@
 
     <!-- Footer -->
     <footer class="bg-slate-900 text-slate-400 text-xs text-center py-4 border-t border-slate-800">
-        <p>© 2026 রিয়েল-টাইম মিটিং প্ল্যানার পোর্টাল। টিম ওয়ার্ক সহজ করতে আমাদের ক্ষুদ্র প্রয়াস।</p>
+        <p>© 2026 Real-Time Meeting Planner Portal. Making team work easier with My small efforts.</p>
     </footer>
 
     <!-- Firebase core logic initialization using modular import -->
@@ -419,7 +419,7 @@
             const roomId = getRoomIdFromHash();
             if (roomId) {
                 currentRoomId = roomId;
-                document.getElementById('setup-title').innerText = "মিটিং রুমে যোগ দিন";
+                document.getElementById('setup-title').innerText = "Join Existing Meeting Room";
                 document.getElementById('create-room-group').classList.add('hidden');
                 document.getElementById('join-room-group').classList.remove('hidden');
             }
@@ -431,11 +431,11 @@
             const roomNameInput = document.getElementById('room-name').value.trim();
 
             if (!usernameInput) {
-                showToast("অনুগ্রহ করে আপনার নাম দিন!", 'error');
+                showToast("Please enter your name!", 'error');
                 return;
             }
             if (!roomNameInput) {
-                showToast("অনুগ্রহ করে একটি মিটিংয়ের টপিক বা নাম দিন!", 'error');
+                showToast("Please enter a topic or name for the meeting!", 'error');
                 return;
             }
 
@@ -458,7 +458,7 @@
                 times: [],
                 places: [],
                 messages: [
-                    { senderId: 'system', senderName: 'সিস্টেম', text: `${usernameInput} নতুন মিটিং প্যানেল তৈরি করেছেন। আড্ডায় স্বাগতম!`, timestamp: Date.now() }
+                    { senderId: 'system', senderName: 'System', text: `${usernameInput} has created a new meeting panel. Welcome!`, timestamp: Date.now() }
                 ],
                 finalMeeting: null
             };
@@ -467,10 +467,10 @@
                 await setDoc(newRoomRef, roomData);
                 window.location.hash = `#room-${generatedRoomId}`;
                 startRoomSync(generatedRoomId);
-                showToast("মিটিং রুম সফলভাবে তৈরি হয়েছে! লিংকটি শেয়ার করুন।");
+                showToast("Meeting room created successfully! Share the link.");
             } catch(e) {
                 console.error(e);
-                showToast("রুম তৈরি করতে সমস্যা হয়েছে। আপনার ফায়ারবেস কনফিগারেশন চেক করুন।", 'error');
+                showToast("Failed to create the meeting room. Please check your Firebase configuration.", 'error');
             }
         }
 
@@ -478,7 +478,7 @@
         async function handleJoinRoom() {
             const usernameInput = document.getElementById('username').value.trim();
             if (!usernameInput) {
-                showToast("অনুগ্রহ করে আপনার নাম দিন!", 'error');
+                showToast("Please enter your name!", 'error');
                 return;
             }
 
@@ -495,8 +495,8 @@
                         const newParticipant = { userId: currentUserId, name: usernameInput, joinedAt: Date.now() };
                         const welcomeMessage = {
                             senderId: 'system',
-                            senderName: 'সিস্টেম',
-                            text: `${usernameInput} মিটিং রুমে যোগ দিয়েছেন।`,
+                            senderName: 'System',
+                            text: `${usernameInput} has joined the meeting room.`,
                             timestamp: Date.now()
                         };
 
@@ -514,15 +514,15 @@
                     }
 
                     startRoomSync(currentRoomId);
-                    showToast("সাফল্যের সাথে মিটিং পোর্টালে যুক্ত হয়েছেন!");
+                    showToast("Successfully joined the meeting portal!");
                 } else {
-                    showToast("দুঃখিত, মিটিং রুমটি খুঁজে পাওয়া যায়নি। নতুন একটি রুম তৈরি করুন।", "error");
+                    showToast("Sorry, the meeting room could not be found. Please create a new room.", "error");
                     window.location.hash = "";
                     setTimeout(() => window.location.reload(), 2000);
                 }
             } catch(e) {
                 console.error(e);
-                showToast("রুমে যুক্ত হতে কোনো সমস্যা হয়েছে।", "error");
+                showToast("There was an issue joining the room.", "error");
             }
         }
 
@@ -540,11 +540,11 @@
                     currentRoomData = docSnap.data();
                     renderRoomDashboard();
                 } else {
-                    showToast("মিটিং রুমের ডাটাবেজ নষ্ট বা ডিলিট হয়ে গিয়েছে।", 'error');
+                    showToast("The meeting room's database is corrupted or deleted.", 'error');
                 }
             }, (error) => {
                 console.error("Sync Error: ", error);
-                showToast("ডাটা সিঙ্ক হতে ত্রুটি হচ্ছে। ডাটাবেজে সঠিক পারমিশন আছে কিনা চেক করুন।", 'error');
+                showToast("There was an error syncing the data. Please check your database permissions.", 'error');
             });
         }
 
@@ -562,7 +562,7 @@
             const votingInputFields = document.querySelectorAll('.voting-input-field');
 
             if (currentRoomData.status === 'finalized') {
-                roomStatusBadge.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-500"></span> মিটিং ক্লোজড`;
+                roomStatusBadge.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-500"></span> Meeting Closed`;
                 roomStatusBadge.className = "px-3 py-1 text-xs font-semibold rounded-full bg-emerald-100 text-emerald-800 flex items-center gap-1.5";
                 finalizeBtn.classList.add('hidden'); // Hide compile button
                 
@@ -571,11 +571,11 @@
 
                 // Populate finalized summary statistics card
                 document.getElementById('finalized-banner').classList.remove('hidden');
-                document.getElementById('final-date').innerText = currentRoomData.finalMeeting?.date ? formatDateBengali(currentRoomData.finalMeeting.date) : 'নির্ধারণ করা হয়নি';
-                document.getElementById('final-time').innerText = currentRoomData.finalMeeting?.time ? formatTime12h(currentRoomData.finalMeeting.time) : 'নির্ধারণ করা হয়নি';
-                document.getElementById('final-place').innerText = currentRoomData.finalMeeting?.place || 'নির্ধারণ করা হয়নি';
+                document.getElementById('final-date').innerText = currentRoomData.finalMeeting?.date ? formatDateBengali(currentRoomData.finalMeeting.date) : 'Not specified';
+                document.getElementById('final-time').innerText = currentRoomData.finalMeeting?.time ? formatTime12h(currentRoomData.finalMeeting.time) : 'Not specified';
+                document.getElementById('final-place').innerText = currentRoomData.finalMeeting?.place || 'Not specified';
             } else {
-                roomStatusBadge.innerHTML = `<span class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span> ভোটিং চলছে`;
+                roomStatusBadge.innerHTML = `<span class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span> Voting in progress`;
                 roomStatusBadge.className = "px-3 py-1 text-xs font-semibold rounded-full bg-amber-100 text-amber-800 flex items-center gap-1.5";
                 finalizeBtn.classList.remove('hidden');
                 
@@ -610,7 +610,7 @@
             container.innerHTML = '';
 
             if (!listData || listData.length === 0) {
-                container.innerHTML = `<p class="text-[11px] text-slate-400 text-center py-6">কোনো অপশন সাজেস্ট করা হয়নি।</p>`;
+                container.innerHTML = `<p class="text-[11px] text-slate-400 text-center py-6">No options suggested.</p>`;
                 return;
             }
 
@@ -653,7 +653,7 @@
                         
                         ${!isFinalizedMode ? `
                             <button data-type="${type}" data-id="${item.id}" class="toggle-vote-btn px-2.5 py-1 text-[10px] font-bold rounded-lg transition-all flex items-center gap-1 ${voteBtnClass}">
-                                ${isVotedByMe ? '<i class="fa-solid fa-check"></i> ভোট দেওয়া' : '<i class="fa-regular fa-thumbs-up"></i> ভোট দিন'}
+                                ${isVotedByMe ? '<i class="fa-solid fa-check"></i> ভোট দেওয়া' : '<i class="fa-regular fa-thumbs-up"></i> ভোট দিন'}
                             </button>
                         ` : ''}
                     </div>
@@ -677,7 +677,7 @@
 
             const messages = currentRoomData.messages || [];
             if (messages.length === 0) {
-                chatBox.innerHTML = `<p class="text-xs text-slate-400 text-center my-auto">রুম চ্যাটে কোনো মেসেজ নেই। এখনই আলোচনা শুরু করুন!</p>`;
+                chatBox.innerHTML = `<p class="text-xs text-slate-400 text-center my-auto">No messages in the room chat. Start the discussion now!</p>`;
                 return;
             }
 
@@ -693,7 +693,7 @@
                 } else if (isMe) {
                     messageWrapper.className = "self-end max-w-[85%] text-right space-y-0.5";
                     messageWrapper.innerHTML = `
-                        <span class="text-[9px] text-slate-400 font-bold mr-1">আপনি</span>
+                        <span class="text-[9px] text-slate-400 font-bold mr-1">You</span>
                         <div class="bg-indigo-600 text-white rounded-2xl rounded-tr-none px-3.5 py-2.5 shadow-sm text-left">
                             <p class="text-xs break-words leading-relaxed">${msg.text}</p>
                         </div>
@@ -721,14 +721,14 @@
             if (currentRoomData.status === 'finalized') return;
             const inputVal = document.getElementById('input-new-date').value;
             if (!inputVal) {
-                showToast("অনুগ্রহ করে একটি তারিখ নির্বাচন করুন!", 'error');
+                showToast("Please select a date!", 'error');
                 return;
             }
 
             // Guard: Duplicate suggestion checks
             const exists = currentRoomData.dates.some(d => d.value === inputVal);
             if (exists) {
-                showToast("এই তারিখটি আগেই সাজেস্ট করা হয়েছে!", 'error');
+                showToast("This date has already been suggested!", 'error');
                 return;
             }
 
@@ -744,16 +744,16 @@
                     dates: arrayUnion(newOption),
                     messages: arrayUnion({
                         senderId: 'system',
-                        senderName: 'সিস্টেম',
-                        text: `${currentUserName} নতুন একটি তারিখ প্রস্তাব করেছেন: ${formatDateBengali(inputVal)}`,
+                        senderName: 'System',
+                        text: `${currentUserName} suggested a new date: ${formatDateBengali(inputVal)}`,
                         timestamp: Date.now()
                     })
                 });
                 document.getElementById('input-new-date').value = '';
-                showToast("নতুন তারিখ সাজেস্ট করা হয়েছে!");
+                showToast("New date suggested!");
             } catch(e) {
                 console.error(e);
-                showToast("তারিখ যুক্ত করতে সমস্যা হয়েছে।", 'error');
+                showToast("Failed to add date.", 'error');
             }
         }
 
@@ -762,13 +762,13 @@
             if (currentRoomData.status === 'finalized') return;
             const inputVal = document.getElementById('input-new-time').value;
             if (!inputVal) {
-                showToast("অনুগ্রহ করে একটি সময় নির্বাচন করুন!", 'error');
+                showToast("Please select a time!", 'error');
                 return;
             }
 
             const exists = currentRoomData.times.some(t => t.value === inputVal);
             if (exists) {
-                showToast("এই সময়টি আগেই সাজেস্ট করা হয়েছে!", 'error');
+                showToast("This time has already been suggested!", 'error');
                 return;
             }
 
@@ -784,16 +784,16 @@
                     times: arrayUnion(newOption),
                     messages: arrayUnion({
                         senderId: 'system',
-                        senderName: 'সিস্টেম',
-                        text: `${currentUserName} নতুন একটি সময় প্রস্তাব করেছেন: ${formatTime12h(inputVal)}`,
+                        senderName: 'System',
+                        text: `${currentUserName} suggested a new time: ${formatTime12h(inputVal)}`,
                         timestamp: Date.now()
                     })
                 });
                 document.getElementById('input-new-time').value = '';
-                showToast("নতুন সময় সাজেস্ট করা হয়েছে!");
+                showToast("New time suggested!");
             } catch(e) {
                 console.error(e);
-                showToast("সময় যুক্ত করতে সমস্যা হয়েছে।", 'error');
+                showToast("Failed to add time.", 'error');
             }
         }
 
@@ -802,13 +802,13 @@
             if (currentRoomData.status === 'finalized') return;
             const inputVal = document.getElementById('input-new-place').value.trim();
             if (!inputVal) {
-                showToast("অনুগ্রহ করে একটি স্থানের নাম দিন!", 'error');
+                showToast("Please enter a place name!", 'error');
                 return;
             }
 
             const exists = currentRoomData.places.some(p => p.value.toLowerCase() === inputVal.toLowerCase());
             if (exists) {
-                showToast("এই স্থানটি আগেই সাজেস্ট করা হয়েছে!", 'error');
+                showToast("This place has already been suggested!", 'error');
                 return;
             }
 
@@ -824,16 +824,16 @@
                     places: arrayUnion(newOption),
                     messages: arrayUnion({
                         senderId: 'system',
-                        senderName: 'সিস্টেম',
-                        text: `${currentUserName} নতুন স্থান প্রস্তাব করেছেন: ${inputVal}`,
+                        senderName: 'System',
+                        text: `${currentUserName} suggested a new place: ${inputVal}`,
                         timestamp: Date.now()
                     })
                 });
                 document.getElementById('input-new-place').value = '';
-                showToast("নতুন স্থান সাজেস্ট করা হয়েছে!");
+                showToast("New place suggested!");
             } catch(e) {
                 console.error(e);
-                showToast("স্থান যুক্ত করতে সমস্যা হয়েছে।", 'error');
+                showToast("Failed to add place.", 'error');
             }
         }
 
@@ -865,10 +865,10 @@
 
             try {
                 await updateDoc(roomRef, updatePayload);
-                showToast("ভোট আপডেট করা হয়েছে!");
+                showToast("Vote updated!");
             } catch(e) {
                 console.error(e);
-                showToast("ভোট দিতে সমস্যা হয়েছে।", "error");
+                showToast("Failed to cast vote.", "error");
             }
         }
 
@@ -895,7 +895,7 @@
                 });
             } catch(e) {
                 console.error(e);
-                showToast("মেসেজ পাঠাতে ব্যর্থ হয়েছে।", 'error');
+                showToast("Failed to send message.", 'error');
             }
         }
 
@@ -904,7 +904,7 @@
             if (currentRoomData.status === 'finalized') return;
 
             // Confirm window replacement logic because standard browser alerts are prohibited
-            const isConfirmed = confirm("আপনি কি নিশ্চিতভাবে এই মিটিংয়ের ভোটিং ক্লোজ করে ফলাফল চূড়ান্ত করতে চান?");
+            const isConfirmed = confirm("Are you sure you want to close the voting for this meeting and finalize the results?");
             if (!isConfirmed) return;
 
             // Retrieve highest voted structures
@@ -933,18 +933,18 @@
                     finalMeeting: finalSpecs,
                     messages: arrayUnion({
                         senderId: 'system',
-                        senderName: 'সিস্টেম',
-                        text: `🎉 মিটিংয়ের চূড়ান্ত সিদ্ধান্ত গ্রহণ করা হয়েছে! তারিখ: ${finalDate ? formatDateBengali(finalDate) : 'সিদ্ধান্তহীন'}, সময়: ${finalTime ? formatTime12h(finalTime) : 'সিদ্ধান্তহীন'}, স্থান: ${finalPlace || 'সিদ্ধান্তহীন'}`,
+                        senderName: 'System',
+                        text: `🎉 The meeting's final decision has been made! Date: ${finalDate ? formatDateBengali(finalDate) : 'No decision'}, Time: ${finalTime ? formatTime12h(finalTime) : 'No decision'}, Place: ${finalPlace || 'No decision'}`,
                         timestamp: Date.now()
                     })
                 });
 
                 // Dazzling confetti burst celebrate animation
                 triggerConfettiFireworks();
-                showToast("অভিনন্দন! মিটিং চূড়ান্ত সিদ্ধান্ত লক করা হয়েছে।");
+                showToast("Congratulations! The meeting's final decision has been locked.");
             } catch(e) {
                 console.error(e);
-                showToast("ফাইনাল ডিক্লেয়ারেশনে সমস্যা হয়েছে। আবার ট্রাই করুন।", 'error');
+                showToast("Failed to finalize the meeting.", 'error');
             }
         }
 
@@ -985,13 +985,13 @@
             try {
                 const successful = document.execCommand('copy');
                 if (successful) {
-                    showToast("মিটিং ইনভাইট লিংক কপি হয়েছে! আপনার বন্ধুদের সাথে শেয়ার করুন।");
+                    showToast("Meeting invite link copied! Share it with your friends.");
                 } else {
-                    showToast("লিংক কপি করতে ব্যর্থ হয়েছে। দয়া করে এড্রেস বার থেকে সরাসরি লিংকটি কপি করুন।", "error");
+                    showToast("Failed to copy the link. Please copy it manually from the address bar.", "error");
                 }
             } catch (err) {
                 console.error("Copy operation crashed:", err);
-                showToast("লিংক কপি করতে ব্যর্থ হয়েছে।", "error");
+                showToast("Failed to copy the link.", "error");
             }
             
             document.body.removeChild(dummyTextArea);
